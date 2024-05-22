@@ -8,6 +8,7 @@ Secret Messenger is a simple Tkinter-based application that allows users to encr
 - Decrypt messages with the correct secret key.
 - User-friendly interface with Tkinter.
 - Support for handling special characters and padding.
+- Easily send encrypted messages via email with just a click
 
 ## Installation
 
