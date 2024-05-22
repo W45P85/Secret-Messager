@@ -61,22 +61,22 @@ def check_password_strength(password):
     """
     # Minimum length requirement
     if len(password) < 8:
-        return "Password is too short. It should be at least 8 characters long."
+        return "Schlüssel ist zu kurz. Mindestens 8 Zeichen verwenden."
     
     # Check for both uppercase and lowercase letters
     if not any(char.isupper() for char in password) or not any(char.islower() for char in password):
-        return "Password should contain both uppercase and lowercase letters."
+        return "Mindestens ein Groß- und Kleinbuchstaben verwenden."
     
     # Check for digits
     if not any(char.isdigit() for char in password):
-        return "Password should contain at least one digit."
+        return "Mindestens eine Ziffer verwenden."
     
     # Check for special characters
     special_characters = "!@#$%^&*()-_=+[{]}|;:,<.>/?"
     if not any(char in special_characters for char in password):
-        return "Password should contain at least one special character."
+        return "Mindestens ein Sonderzeichen verwenden."
     
-    return "Password strength is adequate."
+    return "Die Schlüsselstärke ist ausreichend."
 
 def encrypt():
     """
@@ -90,7 +90,7 @@ def encrypt():
 
     # Check password strength
     strength_feedback = check_password_strength(password)
-    if not strength_feedback == "Password strength is adequate.":
+    if not strength_feedback == "Die Schlüsselstärke ist ausreichend.":
         messagebox.showwarning("encryption", strength_feedback)
         return
 
@@ -173,6 +173,21 @@ def send_email(encrypted_message):
     email_content = f"Beginn der verschlüsselten Nachricht: \n\n{encrypted_message}"
     webbrowser.open('mailto:?subject=Encrypted%20Message&body=' + email_content)
 
+def update_password_strength():
+    """
+    Update the visual feedback for password strength.
+    """
+    password = code.get()
+
+    # Check password strength
+    strength_feedback = check_password_strength(password)
+    
+    # Update label text and color based on password strength
+    if strength_feedback == "Die Schlüsselstärke ist ausreichend.":
+        strength_label.config(text="Schlüsselstärke: Stark", fg="green")
+    else:
+        strength_label.config(text=strength_feedback, fg="red")
+
 def main_screen():
     """
     Create the main window of the application.
@@ -180,11 +195,12 @@ def main_screen():
     global screen
     global code
     global text1
+    global strength_label
 
     screen = Tk()
-    screen.geometry("385x350")
+    screen.geometry("380x440")
 
-    # icon
+    # Icon
     image_icon = PhotoImage(file="img/kisspng-key-icon-magic-keys.png")
     screen.iconphoto(False, image_icon)
     screen.title("Secret Messenger")
@@ -193,19 +209,28 @@ def main_screen():
         code.set("")
         text1.delete(1.0, END)
 
-    Label(text="Text zur Ver- und Entschlüsselung:", fg="black", font=('calibri', 13)).place(x=10, y=10)
+    Label(text="Text für Ver- und Entschlüsselung:", fg="black", font=('calibri', 13)).place(x=10, y=10)
     text1 = Text(font=("Roboto", 10), bg="white", relief=GROOVE, wrap=WORD, bd=0)
     text1.place(x=10, y=50, width=350, height=100)
-    
+
     Label(text="Geheimer Schlüssel:", fg="black", font=("calibri", 13)).place(x=10, y=170)
-    
+
     code = StringVar()
     Entry(textvariable=code, width=19, bd=0, font=("arial", 25), show="*").place(x=10, y=200)
     
-    Button(text="VERSCHLÜSSELN", height="2", width=23, bg="#ed3833", fg="white", bd=0, command=encrypt).place(x=10, y=250)
-    Button(text="ENTSCHLÜSSELN", height="2", width=23, bg="#00bd56", fg="white", bd=0, command=decrypt).place(x=200, y=250)
-    Button(text="RESET", height="2", width=50, bg="#1089ff", fg="white", bd=0, command=reset).place(x=10, y=300)
-    
+    # Add label for password strength feedback
+    strength_label = Label(text="Schlüsselstärke: ", fg="black", font=("calibri", 11))
+    strength_label.place(x=10, y=250)
+
+    # Add button to update password strength feedback
+    Button(text="Check Password Strength", height="1", width=23, bg="#1089ff", fg="white", bd=0, command=update_password_strength).place(x=10, y=280)
+
+    Button(text="VERSCHLÜSSELN", height="2", width=23, bg="#ed3833", fg="white", bd=0, command=encrypt).place(x=10,
+                                                                                                       y=330)
+    Button(text="ENTSCHLÜSSELN.", height="2", width=23, bg="#00bd56", fg="white", bd=0, command=decrypt).place(x=200,
+                                                                                                       y=330)
+    Button(text="RESET", height="2", width=50, bg="#1089ff", fg="white", bd=0, command=reset).place(x=10, y=380)
+
     screen.mainloop()
 
 main_screen()
