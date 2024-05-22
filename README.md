@@ -9,6 +9,7 @@ Secret Messenger is a simple Tkinter-based application that allows users to encr
 - User-friendly interface with Tkinter.
 - Support for handling special characters and padding.
 - Easily send encrypted messages via email with just a click
+- Check the strength of your passwords with simple visual feedback.
 
 ## Installation
 
@@ -63,6 +64,14 @@ Secret Messenger is a simple Tkinter-based application that allows users to encr
     After encrypting a message, you can send it via email by clicking on the "sent via email" button. The encrypted message will be automatically inserted into the email body.
 
     Note: Make sure you have an internet connection and that a default email client is set up on your system to utilize the email feature.
+
+5. **Password Strength**
+
+    A strong password must meet the following criteria:
+    - Be at least 8 characters long.
+    - Contain at least one uppercase letter and one lowercase letter.
+    - Contain at least one digit.
+    - Contain at least one special character, such as `!@#$%^&*()-_=+[{]}|;:,<.>/?`.
 
 ## Dependencies
 
