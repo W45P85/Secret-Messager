@@ -49,6 +49,35 @@ def get_key(password):
     hasher = SHA256.new(password.encode('utf-8'))
     return hasher.digest()
 
+def check_password_strength(password):
+    """
+    Check the strength of a password and return a feedback message.
+    
+    Parameters:
+        password (str): The password to check.
+    
+    Returns:
+        str: A feedback message indicating the strength of the password.
+    """
+    # Minimum length requirement
+    if len(password) < 8:
+        return "Password is too short. It should be at least 8 characters long."
+    
+    # Check for both uppercase and lowercase letters
+    if not any(char.isupper() for char in password) or not any(char.islower() for char in password):
+        return "Password should contain both uppercase and lowercase letters."
+    
+    # Check for digits
+    if not any(char.isdigit() for char in password):
+        return "Password should contain at least one digit."
+    
+    # Check for special characters
+    special_characters = "!@#$%^&*()-_=+[{]}|;:,<.>/?"
+    if not any(char in special_characters for char in password):
+        return "Password should contain at least one special character."
+    
+    return "Password strength is adequate."
+
 def encrypt():
     """
     Encrypt a message using the provided key.
@@ -56,7 +85,13 @@ def encrypt():
     password = code.get()
 
     if password == "":
-        messagebox.showerror("encryption", "Schlüssel eingeben")
+        messagebox.showerror("encryption", "Enter key")
+        return
+
+    # Check password strength
+    strength_feedback = check_password_strength(password)
+    if not strength_feedback == "Password strength is adequate.":
+        messagebox.showwarning("encryption", strength_feedback)
         return
 
     screen1 = Toplevel(screen)
@@ -66,7 +101,7 @@ def encrypt():
 
     message = text1.get(1.0, END).strip()
     if not message:
-        messagebox.showerror("encryption", "Keine Nachricht zu verschlüsseln.")
+        messagebox.showerror("encryption", "No message to encrypt.")
         return
 
     try:
@@ -82,13 +117,15 @@ def encrypt():
 
         text2.insert(END, encrypted_message)
 
-        # Add 'sent via email' button
+        # 'Sent via email' Button
         def send_email_wrapper():
             send_email(encrypted_message)
 
-        Button(screen1, text="per E-Mail versenden", height="2", width=23, bg="#1089ff", fg="white", bd=0, command=send_email_wrapper).place(relx=0.5, rely=0.9, anchor=CENTER)
+        Button(screen1, text="Send via Email", height="2", width=23, bg="#1089ff", fg="white", bd=0,
+               command=send_email_wrapper).place(relx=0.5, rely=0.9, anchor=CENTER)
     except Exception as e:
         messagebox.showerror("encryption", f"Encryption failed: {str(e)}")
+
 
 def decrypt():
     """
