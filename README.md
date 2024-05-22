@@ -11,24 +11,28 @@ Secret Messenger is a simple Tkinter-based application that allows users to encr
 
 ## Installation
 
-1. **Clone the repository:**
+1. **Install Python**
+    1. Make sure Python is installed on your system. You can download and install it from [python.org](https://www.python.org/).
+
+2. **Clone the repository:**
 
     ```
     git clone https://github.com/W45P85/Secret-Messenger
     cd secret-messenger
     ```
 
-2. **Create and activate a virtual environment using Anaconda:**
+3. **Create and activate a virtual environment using Anaconda:**
 
     ```
-    conda create -n secret-messenger-env python=3.9
+    conda create -n secret-messenger-env python=3.11
     conda activate secret-messenger-env
     ```
 
-3. **Install the required dependencies:**
+4. **Install the required dependencies:**
 
     ```
-    pip install -r requirements.txt
+    pip install pycryptodome
+    pip install tkinter
     ```
 
 ## Usage
@@ -53,6 +57,11 @@ Secret Messenger is a simple Tkinter-based application that allows users to encr
     - Click the `DECRYPT` button.
     - The decrypted message will be displayed in a new window.
 
+4. **Email Sending:**
+
+    After encrypting a message, you can send it via email by clicking on the "sent via email" button. The encrypted message will be automatically inserted into the email body.
+
+    Note: Make sure you have an internet connection and that a default email client is set up on your system to utilize the email feature.
 
 ## Dependencies
 
