@@ -9,19 +9,49 @@ from Crypto import Random
 BLOCK_SIZE = 16
 
 def pad(s):
+    """
+    Pads the input string to be a multiple of BLOCK_SIZE.
+    
+    Parameters:
+    s (bytes): The input string to be padded.
+    
+    Returns:
+    bytes: The padded string.
+    """
     padding_length = BLOCK_SIZE - len(s) % BLOCK_SIZE
     padding = chr(padding_length).encode()
     return s + padding * padding_length
 
 def unpad(s):
+    """
+    Removes padding from the input string.
+    
+    Parameters:
+    s (bytes): The padded string.
+    
+    Returns:
+    bytes: The unpadded string.
+    """
     padding_length = s[-1]
     return s[:-padding_length]
 
 def get_key(password):
+    """
+    Generates a SHA-256 hash of the password.
+    
+    Parameters:
+    password (str): The password to be hashed.
+    
+    Returns:
+    bytes: The SHA-256 hash of the password.
+    """
     hasher = SHA256.new(password.encode('utf-8'))
     return hasher.digest()
 
 def encrypt():
+    """
+    Encrypts the message using AES encryption and displays the encrypted message in a new window.
+    """
     password = code.get()
     
     if password == "":
@@ -54,6 +84,9 @@ def encrypt():
         messagebox.showerror("encryption", f"Encryption failed: {str(e)}")
 
 def decrypt():
+    """
+    Decrypts the message using AES decryption and displays the decrypted message in a new window.
+    """
     password = code.get()
     
     if password == "":
@@ -79,7 +112,7 @@ def decrypt():
         decrypted_message = unpad(decrypted_message).decode('utf-8')
         
         Label(screen2, text="DECRYPT", font="arial", fg="white", bg="#00bd56").place(x=10, y=0)
-        text2 = Text(screen2, font="Roboto 10", bg="white", relief=GROOVE, wrap=WORD, bd=0)
+        text2 = Text(screen2, font=("Roboto", 10), bg="white", relief=GROOVE, wrap=WORD, bd=0)
         text2.place(x=10, y=40, width=380, height=150)
         
         text2.insert(END, decrypted_message)
@@ -87,6 +120,9 @@ def decrypt():
         messagebox.showerror("decryption", f"Decryption failed: {str(e)}")
 
 def main_screen():
+    """
+    Initializes and runs the main Tkinter window.
+    """
     global screen
     global code
     global text1
@@ -100,14 +136,17 @@ def main_screen():
     screen.title("Secret Messenger")
     
     def reset():
+        """
+        Resets the input fields.
+        """
         code.set("")
         text1.delete(1.0, END)
     
     Label(text="Text zur Ver- und Entschlüsselung:", fg="black", font=('calibri', 13)).place(x=10, y=10)
-    text1 = Text(font='Roboto 20', bg="white", relief=GROOVE, wrap=WORD, bd=0)
+    text1 = Text(font=("Roboto", 10), bg="white", relief=GROOVE, wrap=WORD, bd=0)
     text1.place(x=10, y=50, width=350, height=100)
     
-    Label(text="Geheimer Schlüssel für die Ver- und Entschlüsselung:", fg="black", font=("calibri", 13)).place(x=10, y=170)
+    Label(text="Geheimer Schlüssel:", fg="black", font=("calibri", 13)).place(x=10, y=170)
     
     code = StringVar()
     Entry(textvariable=code, width=19, bd=0, font=("arial", 25), show="*").place(x=10, y=200)
