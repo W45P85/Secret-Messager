@@ -53,3 +53,42 @@ Secret Messenger is a simple Tkinter-based application that allows users to encr
     - Click the `DECRYPT` button.
     - The decrypted message will be displayed in a new window.
 
+
+## File Structure
+secret-messenger/
+│
+├── img/
+│ └── kisspng-key-icon-magic-keys.png
+│
+├── .gitignore
+├── README.md
+├── requirements.txt
+└── secret_messager.py
+
+
+## Dependencies
+
+- tkinter
+- pycryptodome
+
+
+## Contributing
+
+Contributions are welcome! Please fork the repository and submit a pull request.
+
+
+## License
+
+This project is licensed under the MIT License. See the LICENSE file for more details.
+
+
+### Explanation
+
+1. **Features**: A brief overview of what the application does.
+2. **Installation**: Step-by-step instructions to clone the repository, set up a virtual environment, and install dependencies.
+3. **Usage**: Instructions on how to run the application and use its features.
+4. **File Structure**: A simple outline of the project's file structure.
+5. **Dependencies**: A list of dependencies required for the project.
+6. **Contributing**: Information on how to contribute to the project.
+7. **License**: Information about the project's license.
+
