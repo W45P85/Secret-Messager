@@ -66,7 +66,7 @@ def main_screen():
     screen.geometry("385x398")
     
     # icon
-    image_icon = PhotoImage(file="Secret-Messager\kisspng-key-icon-magic-keys.png")
+    image_icon = PhotoImage(file="kisspng-key-icon-magic-keys.png")
     screen.iconphoto(False, image_icon)
     screen.title("Secret Messager")
     
