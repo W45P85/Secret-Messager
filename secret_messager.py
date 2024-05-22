@@ -10,11 +10,11 @@ BLOCK_SIZE = 16
 
 def pad(s):
     padding_length = BLOCK_SIZE - len(s) % BLOCK_SIZE
-    padding = chr(padding_length) * padding_length
-    return s + padding
+    padding = chr(padding_length).encode()
+    return s + padding * padding_length
 
 def unpad(s):
-    padding_length = ord(s[-1])
+    padding_length = s[-1]
     return s[:-padding_length]
 
 def get_key(password):
@@ -42,8 +42,8 @@ def encrypt():
         key = get_key(password)
         iv = Random.new().read(AES.block_size)
         cipher = AES.new(key, AES.MODE_CBC, iv)
-        padded_message = pad(message)
-        encrypted_message = base64.b64encode(iv + cipher.encrypt(padded_message.encode('utf-8'))).decode('utf-8')
+        padded_message = pad(message.encode('utf-8'))
+        encrypted_message = base64.b64encode(iv + cipher.encrypt(padded_message)).decode('utf-8')
         
         Label(screen1, text="ENCRYPT", font="arial", fg="white", bg="#ed3833").place(x=10, y=0)
         text2 = Text(screen1, font="Roboto 10", bg="white", relief=GROOVE, wrap=WORD, bd=0)
@@ -75,7 +75,8 @@ def decrypt():
         message_bytes = base64.b64decode(message)
         iv = message_bytes[:AES.block_size]
         cipher = AES.new(key, AES.MODE_CBC, iv)
-        decrypted_message = unpad(cipher.decrypt(message_bytes[AES.block_size:]).decode('utf-8'))
+        decrypted_message = cipher.decrypt(message_bytes[AES.block_size:])
+        decrypted_message = unpad(decrypted_message).decode('utf-8')
         
         Label(screen2, text="DECRYPT", font="arial", fg="white", bg="#00bd56").place(x=10, y=0)
         text2 = Text(screen2, font="Roboto 10", bg="white", relief=GROOVE, wrap=WORD, bd=0)
