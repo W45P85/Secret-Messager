@@ -1,4 +1,4 @@
-<code style="background:transparent">
+<code style="background-color: transparent">
    _____                    _     __  __                                     
   / ____|                  | |   |  \/  |                                    
  | (___   ___  ___ _ __ ___| |_  | \  / | ___  ___ ___  __ _  __ _  ___ _ __ 
