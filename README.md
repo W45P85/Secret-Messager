@@ -1,4 +1,4 @@
-<pre style="background-color: transparent; border: none;">
+<pre style="background-color: transparent; border: none; text-align: center;">
    _____                    _     __  __
   / ____|                  | |   |  \/  |
  | (___   ___  ___ _ __ ___| |_  | \  / | ___  ___ ___  __ _  __ _  ___ _ __
