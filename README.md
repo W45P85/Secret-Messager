@@ -1,3 +1,14 @@
+
+   _____                    _     __  __                                     
+  / ____|                  | |   |  \/  |                                    
+ | (___   ___  ___ _ __ ___| |_  | \  / | ___  ___ ___  __ _  __ _  ___ _ __ 
+  \___ \ / _ \/ __| '__/ _ \ __| | |\/| |/ _ \/ __/ __|/ _` |/ _` |/ _ \ '__|
+  ____) |  __/ (__| | |  __/ |_  | |  | |  __/\__ \__ \ (_| | (_| |  __/ |   
+ |_____/ \___|\___|_|  \___|\__| |_|  |_|\___||___/___/\__,_|\__, |\___|_|   
+                                                              __/ |          
+                                                             |___/           
+✨         <b><i>Secret Text Fun: No Snooping Allowed!</b></i>            🚀
+
 # Secret Messenger
 
 Secret Messenger is a simple Tkinter-based application that allows users to encrypt and decrypt messages using a secret key. The encryption uses AES (Advanced Encryption Standard) for secure communication.
