@@ -7,8 +7,9 @@
  |_____/ \___|\___|_|  \___|\__| |_|  |_|\___||___/___/\__,_|\__, |\___|_|
                                                               __/ |
                                                              |___/
-</pre>
 ✨         <b><i>Secret Text Fun: No Snooping Allowed!</b></i>            🚀
+</pre>
+
 
 # Secret Messenger
 
