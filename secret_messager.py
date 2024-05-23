@@ -69,7 +69,7 @@ def encrypt():
         def send_email_wrapper():
             send_email(encrypted_message)
 
-        Button(screen1, text="Send via Email", height="2", width=23, bg="#1089ff", fg="white", bd=0, command=send_email_wrapper).place(relx=0.5, rely=0.9, anchor=CENTER)
+        Button(screen1, text="Send with Email", height="2", width=23, bg="#1089ff", fg="white", bd=0, command=send_email_wrapper).place(relx=0.5, rely=0.9, anchor=CENTER)
     except Exception as e:
         messagebox.showerror("encryption", f"Encryption failed: {str(e)}")
 
@@ -149,7 +149,7 @@ def main_screen():
         code.set("")
         text1.delete(1.0, END)
 
-    Label(text="Text für Ver- und Entschlüsselung:", fg="black", font=('calibri', 13)).place(x=10, y=10)
+    Label(text="Text oder Chiffre hier eingeben:", fg="black", font=('calibri', 13)).place(x=10, y=10)
     text1 = Text(font=("Roboto", 10), bg="white", relief=GROOVE, wrap=WORD, bd=0)
     text1.place(x=10, y=40, width=345, height=100)
 
