@@ -1,17 +1,16 @@
-<pre style="background-color: transparent; border: none; text-align: center;">
-   _____                    _     __  __
-  / ____|                  | |   |  \/  |
- | (___   ___  ___ _ __ ___| |_  | \  / | ___  ___ ___  __ _  __ _  ___ _ __
-  \___ \ / _ \/ __| '__/ _ \ __| | |\/| |/ _ \/ __/ __|/ _` |/ _` |/ _ \ '__|
-  ____) |  __/ (__| | |  __/ |_  | |  | |  __/\__ \__ \ (_| | (_| |  __/ |
- |_____/ \___|\___|_|  \___|\__| |_|  |_|\___||___/___/\__,_|\__, |\___|_|
-                                                              __/ |
-                                                             |___/
-✨         <b><i>Secret Text Fun: No Snooping Allowed!</b></i>            🚀
+<pre style="background-color: transparent; border: none;">
+
+   _____                         _     __  __                                                 
+  / ____|                       | |   |  \/  |                                                
+ | (___    ___   ___  _ __  ___ | |_  | \  / |  ___  ___  ___   ___  _ __    __ _   ___  _ __ 
+  \___ \  / _ \ / __|| '__|/ _ \| __| | |\/| | / _ \/ __|/ __| / _ \| '_ \  / _` | / _ \| '__|
+  ____) ||  __/| (__ | |  |  __/| |_  | |  | ||  __/\__ \\__ \|  __/| | | || (_| ||  __/| |   
+ |_____/  \___| \___||_|   \___| \__| |_|  |_| \___||___/|___/ \___||_| |_| \__, | \___||_|   
+                                                                             __/ |            
+                                                                            |___/             
 </pre>
 
-
-# Secret Messenger
+<center>Message Ninja: Stealthy, Silent, Secure!</center>
 
 Secret Messenger is a simple Tkinter-based application that allows users to encrypt and decrypt messages using a secret key. The encryption uses AES (Advanced Encryption Standard) for secure communication.
 
