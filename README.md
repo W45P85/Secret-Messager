@@ -41,8 +41,8 @@ Secret Messenger is a simple Tkinter-based application that allows users to encr
 
 1. **Run the application:**
 
-<img src="/img/doc/1.PNG" width="80">
-![Encrypting a message](/img/doc/1.PNG)
+<img src="/img/doc/1.PNG" width="150">
+
 
     ```
     python secret_messager.py
@@ -50,14 +50,14 @@ Secret Messenger is a simple Tkinter-based application that allows users to encr
 
 2. **Encrypting a Message:**
 
-![Encrypting a message](/img/doc/2.PNG)
+<img src="/img/doc/2.PNG" width="150">
 
     - Enter your message in the text box.
     - Enter your secret key.
     - Click the `ENCRYPT` button.
     - The encrypted message will be displayed in a new window.
 
-![Encrypting a message](/img/doc/5.PNG)
+<img src="/img/doc/5.PNG" width="150">
 
 3. **Decrypting a Message:**
 
@@ -66,7 +66,7 @@ Secret Messenger is a simple Tkinter-based application that allows users to encr
     - Click the `DECRYPT` button.
     - The decrypted message will be displayed in a new window.
 
-![Encrypting a message](/img/doc/8.PNG)
+<img src="/img/doc/8.PNG" width="150">
 
 4. **Email Sending:**
 
@@ -84,7 +84,7 @@ Secret Messenger is a simple Tkinter-based application that allows users to encr
     - Contain at least one digit.
     - Contain at least one special character, such as `!@#$%^&*()-_=+[{]}|;:,<.>/?`.
 
-![Encrypting a message](/img/doc/7.PNG)
+<img src="/img/doc/7.PNG" width="150">
 
 ## Dependencies
 
