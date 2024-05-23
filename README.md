@@ -41,7 +41,7 @@ Secret Messenger is a simple Tkinter-based application that allows users to encr
 
 1. **Run the application:**
 
-![Encrypting a message](/img/doc/1.PNG)
+![Encrypting a message](/img/doc/1.PNG | width=80)
 
     ```
     python secret_messager.py
