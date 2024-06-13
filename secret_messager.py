@@ -5,6 +5,8 @@ from Crypto.Hash import SHA256
 from Crypto import Random
 import base64
 import webbrowser
+import qrcode
+from PIL import Image, ImageTk
 
 BLOCK_SIZE = 16  # Padding for AES (should be 16 bytes)
 
@@ -68,10 +70,19 @@ def encrypt():
 
         def send_email_wrapper():
             send_email(encrypted_message)
-
-        Button(screen1, text="Send with Email", height="2", width=23, bg="#1089ff", fg="white", bd=0, command=send_email_wrapper).place(relx=0.5, rely=0.9, anchor=CENTER)
+        
+        def copy_to_clipboard():
+            text = text2.get(1.0, END)
+            screen.clipboard_clear()
+            screen.clipboard_append(text)
+            screen.update()
+            messagebox.showinfo("Information", "Text in die Zwischenablage kopiert")
+        
+        Button(screen1, text="Mit E-Mail senden", height="2", width=20, bg="#1089ff", fg="white", bd=0, command=send_email_wrapper).place(relx=0.80, rely=0.9, anchor=CENTER)
+        Button(screen1, text="Kopieren", height="2", width=15, bg="#1089ff", fg="white", bd=0, command=copy_to_clipboard).place(relx=0.15, rely=0.9, anchor=CENTER)
     except Exception as e:
         messagebox.showerror("encryption", f"Encryption failed: {str(e)}")
+
 
 def decrypt():
     password = code.get()
@@ -107,6 +118,7 @@ def decrypt():
 def send_email(encrypted_message):
     email_content = f"Beginn der verschlüsselten Nachricht: \n\n{encrypted_message}"
     webbrowser.open('mailto:?subject=Encrypted%20Message&body=' + email_content)
+
 
 def update_password_strength():
     password = code.get()
@@ -156,8 +168,8 @@ def main_screen():
     Label(text="Geheimer Schlüssel:", fg="black", font=("calibri", 13)).place(x=10, y=170)
 
     code = StringVar()
-    key_entry = Entry(textvariable=code, width=19, bd=0, font=("arial", 25), show="*")
-    key_entry.place(x=10, y=200)
+    key_entry = Entry(textvariable=code, width=37, bd=0, font=("arial", 13), show="*")
+    key_entry.place(x=10, y=200, height=30)
     
     # Define images for showing and hiding key
     show_key_image = PhotoImage(file="img/show_password.png")
