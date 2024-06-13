@@ -1,12 +1,13 @@
 from tkinter import *
-from tkinter import messagebox
+from tkinter import messagebox, Toplevel, CENTER, END, GROOVE, WORD, filedialog
 from Crypto.Cipher import AES
 from Crypto.Hash import SHA256
 from Crypto import Random
 import base64
 import webbrowser
 import qrcode
-from PIL import Image, ImageTk
+from PIL import ImageTk
+import io
 
 BLOCK_SIZE = 16  # Padding for AES (should be 16 bytes)
 
@@ -50,6 +51,9 @@ def encrypt():
     screen1.title("encryption")
     screen1.geometry("400x250")
     screen1.configure(bg="#ed3833")
+    
+    image_icon = PhotoImage(file="img/kisspng-key-icon-magic-keys.png")
+    screen1.iconphoto(False, image_icon)
 
     message = text1.get(1.0, END).strip()
     if not message:
@@ -84,15 +88,23 @@ def encrypt():
                 return
             
             qr_image = generate_qr_code(encrypted_message)
-            qr_image.save("qrcode.png")
 
             qr_window = Toplevel(screen1)
             qr_window.title("QR Code")
+            qr_window.geometry("400x420")
+            qr_window.configure(bg="#ed3833")
+            
+            image_icon = PhotoImage(file="img/kisspng-key-icon-magic-keys.png")
+            qr_window.iconphoto(False, image_icon)
+            
+            
             qr_photo = ImageTk.PhotoImage(qr_image)
 
             qr_label = Label(qr_window, image=qr_photo)
             qr_label.image = qr_photo
             qr_label.pack()
+            
+            Button(qr_window, text="QR Code speichern", height="2", width=15, bg="#1089ff", fg="white", bd=0, command=lambda: save_image_to_file(qr_image)).pack()
 
         def generate_qr_code(message):
             qr = qrcode.QRCode(
@@ -104,6 +116,27 @@ def encrypt():
             qr.add_data(message)
             qr.make(fit=True)
             return qr.make_image(fill='black', back_color='white')
+
+        def save_image_to_file(image):
+            # Öffnen Sie den Datei-Dialog, um den Speicherort zu wählen
+            file_path = filedialog.asksaveasfilename(defaultextension=".png", filetypes=[("PNG files", "*.png")])
+            if file_path:
+                image.save(file_path)
+                messagebox.showinfo("Information", "QR Code gespeichert")
+        
+        def copy_image_to_clipboard(image):
+            # Erstellen Sie ein in-memory Date-like Objekt
+            image_buffer = io.BytesIO()
+            
+            # Speichern Sie das Bild im PNG-Format in den Buffer
+            image.save(image_buffer, format="PNG")
+            image_buffer.seek(0)
+
+            # Kopieren Sie das Bild in die Zwischenablage
+            screen1.clipboard_clear()
+            screen1.clipboard_append(image_buffer.getvalue(), type='image/png')
+            screen1.update()
+            messagebox.showinfo("Information", "QR Code in die Zwischenablage kopiert")
 
         Button(screen1, text="Kopieren", height="2", width=15, bg="#1089ff", fg="white", bd=0, command=copy_to_clipboard).place(relx=0.15, rely=0.9, anchor=CENTER)
         Button(screen1, text="QR Code", height="2", width=15, bg="#1089ff", fg="white", bd=0, command=show_qr_code).place(relx=0.50, rely=0.9, anchor=CENTER)
@@ -122,6 +155,9 @@ def decrypt():
     screen2.title("decryption")
     screen2.geometry("400x250")
     screen2.configure(bg="#00bd56")
+
+    image_icon = PhotoImage(file="img/kisspng-key-icon-magic-keys.png")
+    screen2.iconphoto(False, image_icon)
 
     message = text1.get(1.0, END).strip()
     if not message:
