@@ -133,6 +133,26 @@ def on_double_cklick(event):
         key_entry.insert(END, key)
         screen3.destroy()
 
+def save_image_to_file_and_send_email(qr_image):
+    file_path = filedialog.asksaveasfilename(defaultextension=".png", filetypes=[("PNG files", "*.png")])
+    if file_path:
+        try:
+            qr_image.save(file_path)
+            print(f"Image saved to {file_path}")
+            messagebox.showinfo("Information", "QR Code gespeichert")
+
+            # Kodieren des Dateipfads
+            encoded_file_path = urllib.parse.quote(file_path)
+            subject = urllib.parse.quote("QR Code Attachment")
+            body = urllib.parse.quote("Anbei ein QR-Code.")
+
+            # Öffnen des Standard-E-Mail-Programms mit dem QR-Code als Anhang
+            webbrowser.open(f'mailto:?subject={subject}&body={body}&attachment="{encoded_file_path}"')
+        except Exception as e:
+            messagebox.showerror("Error", f"Failed to save QR Code: {str(e)}")
+    else:
+        print("No file selected")
+
 def encrypt():
     """
     Encrypts a message using a password and displays the encrypted message in a new window.
@@ -249,7 +269,7 @@ def encrypt():
 
             
             # Erstellen der Buttons
-            button1 = Button(qr_window, text="per Mail", height=2, width=15, bg="#1089ff", fg="white", bd=0, command=partial(send_email_wrapper, 'qr_code', qr_image))
+            button1 = Button(qr_window, text="per Mail", height=2, width=15, bg="#1089ff", fg="white", bd=0, command=lambda: save_image_to_file_and_send_email(qr_image))
             button2 = Button(qr_window, text="QR Code speichern", height=2, width=15, bg="#1089ff", fg="white", bd=0, command=lambda: save_image_to_file(qr_image))
 
             # Platzierung der Buttons
